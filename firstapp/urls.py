@@ -20,4 +20,8 @@ urlpatterns = [
     path('editprofile/<int:id>', views.update, name="editprofile"),
      path('delete/<int:id>', views.destroy, name = "delete"),
      path('review/<int:id>',views.reviewpage,name="review"),
+      path('reviewpage/' , views.reviews, name="reviewpage"),
+      
+
+
 ]

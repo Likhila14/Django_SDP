@@ -1,0 +1,105 @@
+{% extends "firstapp/home.html" %}
+        {% block content %}
+        {% load static %}
+        <style>
+            .roww {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.col-4 {
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+
+}
+.ccol-4 {
+    flex-basis: 25%;
+    padding: 10px;
+    border-radius: 9px;
+    max-width: 300px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.ccol-4 img {
+    width: 100%;
+}
+.col-4 img {
+    width: 100%;
+}
+.buttonn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 3px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: #14338a; 
+  border: 2px solid #14338a;
+}
+
+.button1:hover {
+  background-color: #1f2ac7;
+  color: white;
+}
+.column {
+  float: left;
+  
+}
+.columnn {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+        </style>
+<div style="padding-top: 100px">
+        <div class="roww">
+            {% for rev in rev %}
+            
+              <div class="ccol-4" >
+                
+                 
+                <center>
+                 <img src="{% static 'img/pr.jpg' %}" style="height: 250px;">
+                </center>
+                 <h2 style="text-align: center;"> {{ rev.name }}</h2>
+             
+                 <div style="font-size: 15px; padding-bottom: 100px; padding-top: 2px; text-align: center;">{{rev.story}}</div>
+                 <div class="row">
+                {{ rev.ename }} 
+                 
+                    
+                 <div style="float: right;">
+                 <i class="fa fa-thumbs-up " style = "  color: rgb(51, 241, 26);  "></i>  {{ rev.rate }}
+                </div>
+                </div>
+              </div>
+            
+              {% endfor %}
+             
+    </div>
+</div>
+        {% endblock %}

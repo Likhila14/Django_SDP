@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate , login as log_in ,logout
 from django.contrib.auth.models import User
 from .models import Book,Review
 
+
 def register(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -69,6 +70,7 @@ def contactus(request):
     return render(request, "firstapp/contact.html")
 def aboutus(request):
     return render(request, "firstapp/aboutus.html")
+
 def logoutUser(request):
     logout(request)
     messages.success(request ,'Logged Out Successfully')
@@ -170,3 +172,6 @@ def reviewpage(request,id):
         form = ReviewForm()
         event = Book.objects.get(id=id)
         return render(request,"firstapp/review.html",{'event': event})
+def reviews(request):
+    rev = Review.objects.all()
+    return render(request, "firstapp/reviewpages.html" ,{'rev' : rev})
