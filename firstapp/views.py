@@ -3,13 +3,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm, UserCreationForm , BookForm
+from .forms import CreateUserForm, UserCreationForm , BookForm , ReviewForm
 from django.contrib import messages
 from .models import Mothersday, Register,Birthday,Anniversary
 from django.db.models import Q
 from django.contrib.auth import authenticate , login as log_in ,logout
 from django.contrib.auth.models import User
-from .models import Book
+from .models import Book,Review
 
 def register(request):
     if request.user.is_authenticated:
@@ -156,3 +156,17 @@ def destroy(request, id):
     book = Book.objects.get(id=id)
     book.delete()
     return redirect("/")
+
+def reviewpage(request,id):
+    if request.method == 'POST':
+        print(request.POST)
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data['name']
+            messages.success(request ,'Account Created for' +"   " + user)
+            return redirect('home')
+    else:
+        form = ReviewForm()
+        event = Book.objects.get(id=id)
+        return render(request,"firstapp/review.html",{'event': event})

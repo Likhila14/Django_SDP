@@ -69,6 +69,7 @@ button:hover, a:hover {
               <th>Price</th>
               <th>Phone number</th>
               <th>cancel the event </th>
+              <th>review</th>
               
             </tr>
         {% for book in book %}
@@ -77,6 +78,7 @@ button:hover, a:hover {
              <th>  ₹ {{ book.price }}</th>
              <th> {{ book.phnno }} </th>
              <th> <a href = "/delete/{{ book.id }}"> <button >canel </button> </a></th>
+             <th><a href = "/review/{{ book.id }}"> <button >canel </button></th>
             </tr>
           
          {% endfor %}

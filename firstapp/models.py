@@ -37,4 +37,11 @@ class Mothersday(models.Model):
     rate = models.IntegerField()
     class Meta:
         db_table = "mothersday"
+class Review(models.Model):
+    name = models.CharField(max_length=80)
+    ename = models.CharField(max_length=80)
+    story = models.CharField(max_length=500)
+    rate = models.IntegerField()
+    class Meta:
+        db_table = "reviews"
 
