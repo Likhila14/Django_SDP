@@ -20,6 +20,11 @@ class Book(models.Model):
     price = models.IntegerField()
     phnno = models.IntegerField()
     date = models.DateField()
+    nop = models.IntegerField()
+    noti = models.IntegerField()
+    loc = models.CharField(max_length=50)
+    cam = models.CharField(max_length=50)
+    ent = models.CharField(max_length=10)
     class Meta:
         db_table = "bookingdetails"
 
@@ -42,6 +47,14 @@ class Review(models.Model):
     ename = models.CharField(max_length=80)
     story = models.CharField(max_length=500)
     rate = models.IntegerField()
+    
     class Meta:
         db_table = "reviews"
+class Bill(models.Model):
+    name = models.CharField(max_length=80)
+    ename = models.CharField(max_length = 80)
+    price = models.IntegerField()
+
+    class Meta:
+        db_table = "Billing"
 

@@ -2,8 +2,95 @@
     <body>
         {% extends "firstapp/home.html" %}
         {% block content %}
-        <h1>Welcome</h1>
-        <p>This is the home page</p>
+        {% load static %}
+   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body style="padding-top: 100px; padding-bottom: 50px;">
+    <img  src= "{% static 'img/abt.jpeg' %} ">
+    
+    
+    <div style="padding-right: 150px; padding-left: 200px; font-size: 20px; padding-bottom: 80px;">
+        <p> Our business system "EVENT MANAGEMENT SYSTEM " is mainly designed to provide service and administration to your event
+
+            We expect, your task should be just booking the event and leaving all the pressure on us.</p>
+            <ul>
+           <u>Our services include :</u> 
+           <li> Decoration</li>
+           <li>Photography</li>
+        <li>  Entertainment</li>   
+        <li>  Catering</li> 
+           
+           
+        </ul>
+        <ol>
+           <u>Frequently Asked Questions(FAQ'S):</u> 
+         <li>
+             If I cancel an event will I get a refund?
+              <p>  Answer: It depends upon your cancellation duration from the booking date.
+                  <ol type="i">
+            The refund is as follows :
+            <li> Full amount refunded if Cancelled within 24 hours</li>
+            <li> Half the amount will be refunded if canceled before one week</li>
+            <li>No refund if canceled after less than three days to the event.</li>
+        </ol> 
+        </p> 
+        </li>
+        <li>
+             How do I book an event?
+            <p>
+            Answer: Go to the event page and select an event. You will be automatically directed to the booking page.
+             From there make the payment and you will be receiving an email. 
+             You can check the status in the my-profile option. 
+            </p>
+        </li>
+        <li>
+             How do I cancel an event?
+            <p>
+            Answer: Goto my-profile page, where you can see events that you have registered. 
+            Click on the cancel button before the event that you want to cancel.
+        </p>
+        </li>
+        </ol>
+
+    </div>
+   
+    <center>
+        <h2 class="w3-wide w3-center">OUR RATING OVER YEARS</h2>   
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<p> Rating  Vs year</p>  
+</center>
+<script>
+var xValues = [2014,2015,2016,2017,2018,2019,2020,2021];
+var yValues = [2,3.5,4,6,5.5,7,3,6.5];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 0, max:10}}],
+     
+    }
+  }
+});
+</script>
+
+</body>
+</html>
+
+
+
     {% endblock  %}
     </body>
 </html>

@@ -23,12 +23,12 @@ button {
   border: none;
   outline: 0;
   display: inline-block;
-  padding: 6px;
+  padding: 4px;
   color: white;
   background-color: #000;
   text-align: center;
   cursor: pointer;
-  width: 150px;
+  width: 100px;
   font-size: 18px;
 }
 
@@ -52,7 +52,7 @@ button:hover, a:hover {
   opacity: 0.7;
 }
 </style>
-<div style="padding-top: 100px; padding-left: 100px; padding-bottom: 200px;">
+<div style="padding-top: 100px; padding-left: 20px; padding-bottom: 200px;">
 <div class="row">
     <div class="card" style="float: left;">
         <h1>{{ user.first_name }}</h1>
@@ -60,7 +60,7 @@ button:hover, a:hover {
         <p>email : {{ user.email }}</p>
         <p><a href="/editprofile/{{ user.id }}"><button>Edit profile </button></a></p>
       </div>
-      <div style=" padding-right: 200px; float: right;">
+      <div style="  float: right;">
         <h1> YOUR EVENTS </h1>
         <div style="overflow-x:auto;">
           <table>
@@ -68,6 +68,12 @@ button:hover, a:hover {
               <th>Event Name</th>
               <th>Price</th>
               <th>Phone number</th>
+              <th> Date of the event</th>
+              <th> How many times food be should supplied ?</th>
+              <th> No Of Plates </th>
+              <th>Need to book a hall from us</th>
+              <th>Need a photoshoot </th>
+              <th>Need Entertainment </th>
               <th>cancel the event </th>
               <th>review</th>
               
@@ -77,6 +83,12 @@ button:hover, a:hover {
              <th> {{ book.ename }}</th>
              <th>  ₹ {{ book.price }}</th>
              <th> {{ book.phnno }} </th>
+             <th> {{ book.date }}</th>
+             <th> {{ book.noti }}</th>
+             <th> {{ book.nop }}</th>
+             <th> {{  book.loc }} </th>
+             <th> {{ book.cam}} </th>
+             <th> {{book.ent }} </th>
              <th> <a href = "/delete/{{ book.id }}"> <button >cancel </button> </a></th>
              <th><a href = "/review/{{ book.id }}"> <button >review us </button></th>
             </tr>

@@ -10,6 +10,7 @@ urlpatterns = [
       path('anniversary/' , views.anni, name = "anniversary"),
     path("login/", views.login, name="login"),
     path("register/",views.register,name="register"),
+     path("service/", views.service, name="service"),
   path('logout/',views.logoutUser,name="logout"),
   path('contactus/' , views.contactus, name="contactus"),
    path('aboutus/' , views.aboutus, name="aboutus"),
@@ -21,7 +22,9 @@ urlpatterns = [
      path('delete/<int:id>', views.destroy, name = "delete"),
      path('review/<int:id>',views.reviewpage,name="review"),
       path('reviewpage/' , views.reviews, name="reviewpage"),
-      
+         path('bill/<str:username>', views.bill, name="bill"),
+         path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+         views.activate,name='activate')
 
 
 ]

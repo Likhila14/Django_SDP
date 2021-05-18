@@ -1,7 +1,8 @@
 <html>
-    <body>
-        {% extends "firstapp/home.html" %}
-        {% block content %}
+  {% extends "firstapp/home.html" %}
+  {% block content %}
+    <body style =" padding-bottom: 200px ; ">
+       
         <style>
             .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -10,46 +11,124 @@
   text-align: center;
   font-family: arial;
 }
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.columnn {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
 
 .title {
   color: grey;
   font-size: 18px;
 }
         </style>
-        <div style = " padding-top : 100px; "> 
-            
+ <div style = " padding-top : 85px;  padding-bottom: 200px;  "> 
+
+  <center>><h1 style="padding-bottom: 35px;"> BOOK YOUR EVENT</h1></center
+    <div class="row"> 
+       
+     <div class="column" style="padding-top: 30px;">      
  <div class="card">
     <img src="{{event.img.url}}" style="width:100%">
     <h3>{{event.name}}</h3>
     <p class="title">₹ {{ event.price }}</p>
-    
+  </div> 
                
                
               
   </div>
 
-<center>
-    <div style="border: solid 2px ; width: 470px; padding-top: 50px;">
- <form method="POST">
+
+    <div style="float: right;" class="column" >
+ <form method="POST" >
             {% csrf_token %}
             
-               
+              <div class="row">
+                <div class="columnn">
                 <h5>Username</h5>
                 <input type="text" value="{{ user.username }}" name="username"  >
+              </div>
+              <div class="columnn">
               <h5>Eventname</h5>
               <input type="text" name="ename"  value="{{event.name}}" >
-             <h5>Pirce</h5>
-                       <input type="text" name="price" value="{{event.price}}"  >
-               <h5>Phone number</h5>
-               <input type="text" name="phnno"  >
-               <h5>Phone number</h5>
-               <input type="date" name="date">  
+              </div>
+            </div>
+            <div class="row">
+              <div class="columnn">
+                <h5> Basic Pirce</h5>
+                <input type="text" name="price" value="{{event.price}}"  >
+              </div>
+              <div class="columnn">
+                <h5>Phone number</h5>
+                <input type="number" name="phnno"  >
+              </div>
+            </div>
+            <div class="row">
+              <div class="columnn">
+                <h5>Phone number</h5>
+                <input type="date" name="date">  
+              </div>
+              <div class="columnn">
+                <h5>How many times food should supply</h5>
+                <input type="number" name="noti"  >
+              </div>
+            </div>
+              
+            <div class="row">
+              <div class="columnn">
+                <h5>No Of Plates </h5> <input type="number" name="nop"  >
+              
+              </div>
+              <div class="columnn">
+                <u> <h5>Location</h5></u>
+                <input type="radio" id="book" name="loc" value="yes">
+                <label for="book">Need to book a hall from us</label><br>
+                <input type="radio" id="nbook" name="loc" value="No">
+                <label for="nbook">No need</label><br>
+              </div>
+            </div>
+              
+              
+               <div class="row">
+                 <div class="columnn">
+                  <u><h5>Photo Section</h5></u> 
+                  <input type="radio" id="ss" name="cam" value="yes">
+                  <label for="ss">Need a photoshoot </label><br>
+                  <input type="radio" id="nn" name="cam" value="No">
+                  <label for="nn">No need</label><br>
+                 </div>
+                 <div class="columnn">
+                  <u><h5>Entertainment Section</h5></u> 
+                  <input type="radio" id="s" name="ent" value="yes">
+                  <label for="s">Need Entertainment </label><br>
+                  <input type="radio" id="n" name="ent" value="No">
+                  <label for="n">No need</label><br>
+                 </div>
+               </div>
+              
+             
+              
                <h5></h5>
-            <input type="submit" class="btn" value="Book now" >
+    <div style="padding-left: 150px; padding-top: 25px;">  <input type="submit" class="btn" value="Book now" >  </div> 
         </form>
     </div>
-    </center>
-    {% endblock  %}
+   </div>
+    
     </body>
+    {% endblock  %}
+</div>
 </div>
 </html>

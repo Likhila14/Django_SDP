@@ -249,26 +249,30 @@ a:hover{
            		   </div>
            		   <div class="div">
            		   		<h5>Firstname</h5>
-           		   		<input type="text" name="first_name" class="input">
+           		   		<input type="text" name="first_name" class="input" required>
 							 
            		   </div>
            		</div>
+				   <p style="color: red;">  {{ form.errors.first_name }}</p>
                <div class="input-div one">
                 <div class="i">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="div">
                     <h5>Username</h5>
-                    <input type="text" name="username" class="input">
+                    <input type="text" name="username" class="input" required>
+					
                 </div>
              </div>
+			 <p style="color: red;">	{{ form.errors.username }}</p>
              <div class="input-div one">
               <div class="i">
                   <i class="fas fa-envelope"></i>
               </div>
               <div class="div">
                   <h5>Email</h5>
-                  <input type="email" name="email" class="input">
+                  <input type="email" name="email" class="input" required>
+				  <p style="color: red;">  {{ form.errors.email }}</p>
               </div>
            </div>
            		<div class="input-div pass">
@@ -277,18 +281,22 @@ a:hover{
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" name="password1" class="input">
+           		    	<input type="password" name="password1" class="input" required>
+						 
             	   </div>
             	</div>
+				<p style="color: red;">{{ form.errors.password1 }} </p>
               <div class="input-div pass">
                 <div class="i"> 
                    <i class="fas fa-lock"></i>
                 </div>
                 <div class="div">
                    <h5>ConformPassword</h5>
-                   <input type="password" name="password2" class="input">
+                   <input type="password" name="password2" class="input" required>
+				  
                </div>
             </div>
+			<p style="color: red;"> {{ form.errors.password2 }}</p>
             	<input type="submit" class="btn" value="Create Account">
 				<a href="/login" > login here!</a>
             </form>
