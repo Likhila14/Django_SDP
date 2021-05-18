@@ -1,0 +1,137 @@
+{% extends "firstapp/home.html" %}
+{% block content %}
+{% load static %}
+<style>
+    body {font-family: "Lato", sans-serif;
+    
+    }
+    .mySlides {display: none}
+    
+    .container {
+        max-width: 1400px;
+        margin: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: white;
+    }
+    .small-container {
+        max-width: 1300px;
+        margin: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px; 
+        background-color: white;
+        border-radius: 5px;
+        
+    
+    }
+    .ssmall-container {
+        max-width: 1300px;
+        margin: auto;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 10px; 
+        background-color: white;
+        border-radius: 5px;
+    
+    
+    }
+    .roww {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .col-4 {
+        flex-basis: 25%;
+        padding: 10px;
+        min-width: 200px;
+        margin-bottom: 50px;
+        transition: transform 0.5s;
+    
+    }
+    .ccol-4 {
+        flex-basis: 25%;
+        padding: 10px;
+        border-radius: 9px;
+        max-width: 300px;
+        margin-bottom: 50px;
+        transition: transform 0.5s;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    }
+    .ccol-4 img {
+        width: 100%;
+    }
+    .col-4 img {
+        width: 100%;
+    }
+    .buttonn {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 3px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+    
+    .button1 {
+      background-color: white; 
+      color: #14338a; 
+      border: 2px solid #14338a;
+    }
+    
+    .button1:hover {
+      background-color: #1f2ac7;
+      color: white;
+    }
+    .column {
+      float: left;
+      
+    }
+    @media (max-width: 700px) { 
+   .myclass{
+       display: none;
+   }
+}
+    
+    /* Clearfix (clear floats) */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    
+    </style>
+    <div style="padding-top: 100px ;">
+        <div  class = myclass style="padding-bottom:70px;">
+        <img  src= "{% static 'img/anni.png' %} ">
+    </div>
+    <div class="roww">
+        {% for anni in anni %}
+        
+        <div class="ccol-4" >
+            <a href="productdetails.html"><img src="{{anni.img.url}}"></a>
+          <div style="font-size: 15px; padding-bottom: 2px; padding-top: 2px;">{{anni.name}}</div>
+            <div class="row">
+                 
+              ₹ {{ anni.price }}
+                
+             <div style="float: right;">
+              <i class="fa fa-thumbs-up" style = "  color: rgb(0, 89, 255) ; "></i> {{ anni.rate }}
+            </div>
+            </div>
+            </div>
+          {% endfor %}
+         
+</div>
+</div>
+</div>
+
+{% endblock %}

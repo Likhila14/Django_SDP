@@ -1,0 +1,20 @@
+<html>
+    <style>
+         @media (max-width: 1000px) { 
+   .myclass{
+       display: none;
+   }
+    }
+    </style>
+    <body>
+        {% extends "firstapp/home.html" %}
+        {% block content %}
+        {% load static %}
+        <div style="padding-top: 60px ;">
+            <div >
+            <img class =  myclass src= "{% static 'img/contact.jpg' %} ">
+        </div>
+       </div>
+    {% endblock  %}
+    </body>
+</html>

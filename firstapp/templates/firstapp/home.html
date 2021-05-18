@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<title>event</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif;
+
+}
+.mySlides {display: none}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+}
+.small-container {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px; 
+    background-color: white;
+    border-radius: 5px;
+    
+
+}
+.ssmall-container {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px; 
+    background-color: white;
+    border-radius: 5px;
+
+
+}
+.roww {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.col-4 {
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+
+}
+.ccol-4 {
+    flex-basis: 25%;
+    padding: 10px;
+    border-radius: 9px;
+    max-width: 300px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.ccol-4 img {
+    width: 100%;
+}
+.col-4 img {
+    width: 100%;
+}
+.buttonn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 3px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: #14338a; 
+  border: 2px solid #14338a;
+}
+
+.button1:hover {
+  background-color: #1f2ac7;
+  color: white;
+}
+.column {
+  float: left;
+  
+}
+.columnn {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+</style>
+<body>
+
+<!-- Navbar -->
+
+
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card" style="padding-top:5px; padding-bottom:5px">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+    {% if user.is_authenticated %}
+    <a href="/logout" class="w3-bar-item w3-button w3-padding-large w3-hide-small"style="float: right;">Logout</a>
+    <a href="/profile/{{ user.id }}/{{ user.username }}" class="w3-bar-item w3-button w3-padding-large w3-hide-small" style="float: right; ">Myprofile</a>
+    {% else %}
+    <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hide-small"style="float: right;">Login</a>
+  {%endif%}
+      
+    <a href="/aboutus" class="w3-bar-item w3-button w3-padding-large w3-hide-small"style="float: right;">About Us</a>
+    <a href="/contactus" class="w3-bar-item w3-button w3-padding-large w3-hide-small"style="float: right;">Contact Us</a>
+    <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small"style="float: right;">Services</a>
+    
+    <a href="/home" class="w3-bar-item w3-button w3-padding-large" style="float: right;">Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large" style="float: left;">EVENT MANAGEMENT</a>
+
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+ 
+  <a href="/contactus" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Services</a>
+<a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Contact Us</a>
+  <a href="/abouts" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">About US</a>
+  {% if user.is_authenticated %}
+  <a href="/profile/{{ user.id }}/{{ user.username }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Myprofile</a>
+  <a href="/logout" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Logout</a>
+
+  {% else %}
+  <a href="/login" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Login</a>
+
+  {% endif %}
+</div>
+{% block content %}
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <img src= "{% static 'img/h11.jpg' %}" style="width:100%">
+    
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="{% static 'img/h3.jpg' %}" style="width:100%">
+    
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="{% static 'img/h21.jpg' %}" style="width:100%">
+    
+  </div>
+
+  <!-- main Event -->
+  <div style="padding-top: 20px;">
+  <div class="small-container" >
+    <div class="roww">
+        <div class="col-4">
+            <a href="/bday"><img src="{% static 'img/md.png' %}"></a>
+           
+            
+           
+        </div>
+        <div class="col-4">
+          <a href="/anniversary">  <img src="{% static 'img/ma.png' %}"></a>
+        </div>
+        <div class="col-4">
+            <img src="{% static 'img/pd.png' %}">
+            
+        </div>
+       
+    </div>
+</div>
+
+    <!--Birthday decorations-->
+<div style="padding-top: 20px;">
+    <div class="ssmall-container" >
+      <div class="row">
+        <div class="column" style="width: 90%;">
+          <div style=" font-size:20px ;color: rgb(41, 43, 170)">Birthday specials</div><hr>
+        </div>
+        <div class="column">
+        <a href = "/bday"><button  class="buttonn button1" >view more</button> </a> 
+      
+        </div>
+        </div>
+      <div class="roww">
+        {% for bday in bday %}
+        
+          <div class="ccol-4">
+              <a  href = "/book/{{bday.id}}"><img src="{{bday.img.url}}"></a>
+             
+               <div style="font-size: 15px; padding-bottom: 2px; padding-top: 2px;">{{bday.name}}</div>
+               <div class="row">
+               
+                ₹ {{ bday.price }}
+                  
+               <div style="float: right;">
+               <i class="fa fa-thumbs-up " style = "  color: rgb(51, 241, 26);  "></i> {{ bday.rate }}
+              </div>
+              </div>
+          </div>
+        
+          {% endfor %}
+         
+</div>
+</div>
+
+
+
+
+  <!--Anniversary decorations-->
+  <div style="padding-top: 20px;">
+    <div class="ssmall-container" >
+      <div class="row">
+        <div class="column" style="width: 90%;">
+          <div style=" font-size:20px ;color: rgb(41, 43, 170)">Anniversary specials</div><hr>
+        </div>
+        <div class="column">
+          <a href = "/anniversary"> <button class="buttonn button1" >view more</button></a>
+      
+        </div>
+        </div>
+      <div class="roww">
+        {% for anni in anni %}
+        <div class="ccol-4" >
+          <a href="/abook/{{anni.id}}"><img src="{{anni.img.url}}"></a>
+        <div style="font-size: 15px; padding-bottom: 2px; padding-top: 2px;">{{anni.name}}</div>
+          <div class="row">
+               
+            ₹ {{ anni.price }}
+              
+           <div style="float: right;">
+            <i class="fa fa-thumbs-up" style = "  color: rgb(0, 89, 255) ; "></i> {{ anni.rate }}
+          </div>
+          </div>
+          </div>
+        
+          
+             
+               
+        
+          {% endfor %}
+         
+</div>
+</div>
+
+
+<div style="padding-top: 20px;">
+  <div class="ssmall-container" >
+    <div class="row">
+      <div class="column" style="width: 90%;">
+        <div style=" font-size:20px ;color: rgb(41, 43, 170)">Mother's Day specials</div><hr>
+      </div>
+      <div class="column">
+      <a href = "/mom"><button  class="buttonn button1" >view more</button> </a> 
+    
+      </div>
+      </div>
+    <div class="roww">
+      {% for mom in mom %}
+      
+        <div class="ccol-4">
+            <a  href = "/mbook/{{mom.id}}"><img src="{{mom.img.url}}"></a>
+           
+             <div style="font-size: 15px; padding-bottom: 2px; padding-top: 2px;">{{bday.name}}</div>
+             <div class="row">
+             
+              ₹ {{ mom.price }}
+                
+             <div style="float: right;">
+             <i class="fa fa-thumbs-up " style = "  color: rgb(51, 241, 26);  "></i> {{ mom.rate }}
+            </div>
+            </div>
+        </div>
+      
+        {% endfor %}
+       
+</div>
+</div>
+
+{% endblock %}
+  <!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+    <p class="w3-opacity w3-center"><i> Drop a note!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Vijyawada, Ap<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Image of location/map -->
+<img src="{% static 'img/img.png' %}" class="w3-image w3-greyscale-min" style="width:100%">
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">sdp126</a></p>
+</footer>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

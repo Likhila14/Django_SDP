@@ -1,0 +1,28 @@
+<html>
+    <body>
+        {% extends "firstapp/home.html" %}
+        {% block content %}
+
+        <a href="productdetails.html"><img src="{{event.img.url}}"></a>
+             
+               <div>{{event.name}}</div>
+               
+               
+               <i class="fa fa-thumbs-up " style = "  color: rgb(51, 241, 26);  "></i>
+        <form method="POST">
+            {% csrf_token %}
+            
+               
+                <h5>Username</h5>
+                <input type="text" value="{{ user.username }}" name="username"  >
+              <h5>Eventname</h5>
+              <input type="text" name="ename"  value="{{event.name}}" >
+             <h5>Pirce</h5>
+                       <input type="text" name="price" value="{{event.price}}"  >
+               <h5>Phone number</h5>
+               <input type="text" name="phnno"  >
+            <input type="submit" class="btn" value="Book now">
+        </form>
+    {% endblock  %}
+    </body>
+</html>

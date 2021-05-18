@@ -1,0 +1,89 @@
+{% extends "firstapp/home.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+  margin: auto;
+  padding-left: 25px;
+  padding-bottom:25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 6px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 150px;
+  font-size: 18px;
+}
+
+.a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+<div style="padding-top: 100px; padding-left: 100px; padding-bottom: 200px;">
+<div class="row">
+    <div class="card" style="float: left;">
+        <h1>{{ user.first_name }}</h1>
+        <p> Username : {{ user.username }}</p>
+        <p>email : {{ user.email }}</p>
+        <p><a href="/editprofile/{{ user.id }}"><button>Edit profile </button></a></p>
+      </div>
+      <div style=" padding-right: 200px; float: right;">
+        <h1> YOUR EVENTS </h1>
+        <div style="overflow-x:auto;">
+          <table>
+            <tr>
+              <th>Event Name</th>
+              <th>Price</th>
+              <th>Phone number</th>
+              <th>cancel the event </th>
+              
+            </tr>
+        {% for book in book %}
+           <tr>
+             <th> {{ book.ename }}</th>
+             <th>  ₹ {{ book.price }}</th>
+             <th> {{ book.phnno }} </th>
+             <th> <a href = "/delete/{{ book.id }}"> <button >canel </button> </a></th>
+            </tr>
+          
+         {% endfor %}
+        </table>
+      </div>
+      
+      </div>
+    </div>
+</div>
+{% endblock %}
