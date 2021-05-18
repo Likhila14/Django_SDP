@@ -2,14 +2,35 @@
     <body>
         {% extends "firstapp/home.html" %}
         {% block content %}
+        <style>
+            .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
 
-        <a href="productdetails.html"><img src="{{event.img.url}}"></a>
-             
-               <div>{{event.name}}</div>
+.title {
+  color: grey;
+  font-size: 18px;
+}
+        </style>
+        <div style = " padding-top : 100px; "> 
+            
+ <div class="card">
+    <img src="{{event.img.url}}" style="width:100%">
+    <h3>{{event.name}}</h3>
+    <p class="title">₹ {{ event.price }}</p>
+    
                
                
-               <i class="fa fa-thumbs-up " style = "  color: rgb(51, 241, 26);  "></i>
-        <form method="POST">
+              
+  </div>
+
+<center>
+    <div style="border: solid 2px ; width: 470px; padding-top: 50px;">
+ <form method="POST">
             {% csrf_token %}
             
                
@@ -22,9 +43,13 @@
                <h5>Phone number</h5>
                <input type="text" name="phnno"  >
                <h5>Phone number</h5>
-               <input type="date" name="date">  >
-            <input type="submit" class="btn" value="Book now">
+               <input type="date" name="date">  
+               <h5></h5>
+            <input type="submit" class="btn" value="Book now" >
         </form>
+    </div>
+    </center>
     {% endblock  %}
     </body>
+</div>
 </html>

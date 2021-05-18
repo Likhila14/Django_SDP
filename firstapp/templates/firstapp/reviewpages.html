@@ -8,6 +8,15 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+.small-container {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px; 
+    background-color: white;
+    border-radius: 5px;
+}
 
 .col-4 {
     flex-basis: 25%;
@@ -21,7 +30,7 @@
     flex-basis: 25%;
     padding: 10px;
     border-radius: 9px;
-    max-width: 300px;
+    max-width: 250px;
     margin-bottom: 50px;
     transition: transform 0.5s;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -74,8 +83,10 @@
   clear: both;
   display: table;
 }
+
         </style>
-<div style="padding-top: 100px">
+
+<div style="padding-top: 100px" class="small-container">
         <div class="roww">
             {% for rev in rev %}
             
@@ -83,12 +94,13 @@
                 
                  
                 <center>
-                 <img src="{% static 'img/pr.jpg' %}" style="height: 250px;">
+                 <img src="{% static 'img/prr.jpg' %}" style="height: 150px; width: 150px;">
                 </center>
-                 <h2 style="text-align: center;"> {{ rev.name }}</h2>
+                 <h3 style="text-align: center;"> {{ rev.name }}</h3>
              
-                 <div style="font-size: 15px; padding-bottom: 100px; padding-top: 2px; text-align: center;">{{rev.story}}</div>
+                 <div style="font-size: 15px; padding-bottom: 40px; padding-top: 2px; text-align: center;">{{rev.story}}</div>
                  <div class="row">
+                
                 {{ rev.ename }} 
                  
                     

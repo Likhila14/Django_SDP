@@ -233,10 +233,10 @@ a:hover{
 }
 </style>
 <body>
-	<img class="wave"src="{% static 'images/wave.png' %}">
+	<img class="wave"src="{% static 'img/curve.jpg' %}">
 	<div class="container">
 		<div class="img">
-			<img src="img/bg.svg">
+			<img src="{% static 'img/ls.jpg' %}" style="width:470px;height:350px">
 		</div>
 		<div class="login-content">
             
@@ -263,9 +263,15 @@ a:hover{
             	</div>
             	<a href="#">Forgot Password?</a>
             	<input type="submit" class="btn" value="Login">
+			<center>	<a href="/register" >	signup here!</a></center>
             </form>
+			
         </div>
+		
+			
+			
     </div>
+	
     <script>
 		const inputs = document.querySelectorAll(".input");
 		function addcl(){
