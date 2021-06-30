@@ -3,7 +3,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm, UserCreationForm , BookForm , ReviewForm
+from .forms import BillForm, CreateUserForm, UserCreationForm , BookForm , ReviewForm
 from django.contrib import messages
 from .models import Mothersday, Register,Birthday,Anniversary
 from django.db.models import Q
@@ -158,69 +158,116 @@ def reviews(request):
     rev = Review.objects.all()
     return render(request, "firstapp/reviewpages.html" ,{'rev' : rev})
 
-@login_required(login_url ='login' )    
-def bill(request,username):
-    book = Book.objects.filter(username= username)
-    fprice =[]
-    for i in range(0,len(book)):
-        fprice[i] = (((book[i].nop)*80)*(book[i].noti))+book[i].price
-        if(book[i].loc =='yes'):
-            fprice[i] = fprice[i] + 30000
-        if(book[i].cam =='yes'):
-            fprice[i] = fprice[i] + 20000
-        if(book[i].ent =='yes'):
-            fprice[i] = fprice[i] + 10000
+@login_required(login_url ='login' )  
+
+def bill(request,username,ename):
+    book = Book.objects.filter(username= username,ename=ename)
+    fprice = (((book[0].nop)*80)*(book[0].noti))+book[0].price
+    food = (((book[0].nop)*80)*(book[0].noti))
+    lprice = 0
+    cprice = 0
+    eprice = 0
+    bprice = book[0].price
+    if(book[0].loc =='yes'):
+        fprice = fprice + 30000
+        lprice = 30000
+    if(book[0].cam =='yes'):
+        fprice = fprice + 20000
+        cprice = 20000
+    if(book[0].ent =='yes'):
+        fprice = fprice + 10000
+        eprice = 10000
     dict = {
-        'fprice' : fprice,
-         'book' : book
-    }
+    'fprice' : fprice,
+        'name' : book[0].username,
+        'ename' : book[0].ename,
+        'book' : book,
+        'food' : food,
+        'lprice' : lprice,
+        'cprice': cprice,
+        'eprice' : eprice,
+        'bprice' : bprice
+     }
+    if request.method == 'POST':
+        print(request.POST)
+        form = BillForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data['name']
+            messages.success(request ,'Account Created for' +"   " + user)
+            return redirect('thank')
+    else:
+        form = BillForm()
 
     return render(request, "firstapp/bill.html", dict)
 
 @login_required(login_url ='login' )
-def book(request, id):
+def book(request, id ,ename):
     if request.method == 'POST':
         print(request.POST)
+        username = request.POST.get('username')
+        eename = request.POST.get('ename')
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
             user = form.cleaned_data['username']
             messages.success(request ,'Account Created for' +"   " + user)
-            return redirect('home')
+            return redirect('bill' , username,eename)
+            
     else:
         form = BookForm()
-    event = Birthday.objects.get(id=id) 
-    return render(request,"firstapp/book.html", {'event': event})
+   
+    event = Birthday.objects.get(id=id)
+    rev = Review.objects.filter(ename=ename)
+    dict = {
+        'event' : event,
+        'rev':rev
+    }
+    return render(request,"firstapp/book.html", dict)
 
 @login_required(login_url ='login' )
-def abook(request, id):
+def abook(request, id,ename):
     if request.method == 'POST':
         print(request.POST)
+        username = request.POST.get('username')
+        eename = request.POST.get('ename')
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
             user = form.cleaned_data['username']
             messages.success(request ,'Account Created for' +"   " + user)
-            return redirect('home')
+            return redirect('bill' , username,eename)
     else:
         form = BookForm()
     event = Anniversary.objects.get(id=id)
-    return render(request,"firstapp/book.html", {'event': event})
+    rev = Review.objects.filter(ename=ename)
+    dict = {
+        'event' : event,
+        'rev':rev
+    }
+    return render(request,"firstapp/book.html", dict)
 
 @login_required(login_url ='login' )
-def mbook(request, id):
+def mbook(request, id,ename):
     if request.method == 'POST':
         print(request.POST)
+        username = request.POST.get('username')
+        eename = request.POST.get('ename')
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
             user = form.cleaned_data['username']
             messages.success(request ,'Account Created for' +"   " + user)
-            return redirect('home')
+            return redirect('bill' , username,eename)
     else:
         form = BookForm()
     event = Mothersday.objects.get(id=id)
-    return render(request,"firstapp/book.html", {'event': event})
+    rev = Review.objects.filter(ename=ename)
+    dict = {
+        'event' : event,
+        'rev':rev
+    }
+    return render(request,"firstapp/book.html", dict)
 
     
 
@@ -257,3 +304,8 @@ def update(request, id ):
         form.save()
         return redirect("home")
     return render(request, 'firstapp/editprofile.html', {'user': user})
+
+@login_required(login_url ='login' )
+
+def thank(request):
+    return render(request, 'firstapp/thank.html')

@@ -1,62 +1,150 @@
 {% extends "firstapp/home.html" %}
         {% block content %}
         {% load static %}
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+      
         <style>
-        .container {
-  border: 2px solid #ccc;
-  background-color: #eee;
-  border-radius: 5px;
-  padding: 16px;
-  margin: 16px 0
+     .testimonials-clean {
+  color:#313437;
+  background-color:#eef4f7;
 }
 
-.container::after {
-  content: "";
-  clear: both;
-  display: table;
+.testimonials-clean p {
+  color:#7d8285;
 }
 
-.container img {
-  float: left;
-  margin-right: 20px;
-  border-radius: 50%;
+.testimonials-clean h2 {
+  font-weight:bold;
+  margin-bottom:40px;
+  padding-top:40px;
+  color:inherit;
 }
 
-.container span {
-  font-size: 20px;
-  margin-right: 15px;
-}
-
-@media (max-width: 500px) {
-  .container {
-      text-align: center;
-  }
-  .container img {
-      margin: auto;
-      float: none;
-      display: block;
+@media (max-width:767px) {
+  .testimonials-clean h2 {
+    margin-bottom:25px;
+    padding-top:25px;
+    font-size:24px;
   }
 }
 
-        </style>
+.testimonials-clean .intro {
+  font-size:16px;
+  max-width:500px;
+  margin:0 auto;
+}
 
-<div style="padding-top: 100px" class="small-container">
-       
-            {% for rev in rev %}
-            
-            
-            <div class="container">
-              <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:90px">
-              <p><span></span> CEO at Mighty Schools.</p>
-              <p>John Doe saved us from a web disaster.</p>
-            </div>
-            
-           
-           
-            
-              {% endfor %}
-             
-           
+.testimonials-clean .intro p {
+  margin-bottom:0;
+}
+
+.testimonials-clean .people {
+  padding:50px 0 20px;
+}
+
+.testimonials-clean .item {
+  margin-bottom:32px;
+}
+
+@media (min-width:768px) {
+  .testimonials-clean .item {
+    height:220px;
+  }
+}
+
+.testimonials-clean .item .box {
+  padding:30px;
+  background-color:#fff;
+  position:relative;
+}
+
+.testimonials-clean .item .box:after {
+  content:'';
+  position:absolute;
+  left:30px;
+  bottom:-24px;
+  width:0;
+  height:0;
+  border:15px solid transparent;
+  border-width:12px 15px;
+  border-top-color:#fff;
+}
+
+.testimonials-clean .item .author {
+  margin-top:28px;
+  padding-left:25px;
+}
+
+.testimonials-clean .item .name {
+  font-weight:bold;
+  margin-bottom:2px;
+  color:inherit;
+}
+
+.testimonials-clean .item .title {
+  font-size:13px;
+  color:#9da9ae;
+}
+
+.testimonials-clean .item .description {
+  font-size:15px;
+  margin-bottom:0;
+}
+
+.testimonials-clean .item img {
+  max-width:40px;
+  float:left;
+  margin-right:12px;
+  margin-top:-5px;
+}
+.container{
+  background-image: url("{% static 'img/rb.jpg' %}");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+ </style>
+<div style="padding-top: 100px ;">
+ 
+  
+  
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Untitled</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+      <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  
+  <body>
+      <div class="testimonials-clean" >
+        <div class="back">
+          <div class="container" >
+              <div class="intro">
+                  <h2 class="text-center">Reviews </h2>
+                  <p class="text-center" style="color: black;" >Our customers love us! Read what they have to say below. </p>
+              </div>
+              <div class="row people">
+                {% for rev in rev %}
+                  <div class="col-md-6 col-lg-4 item">
+                      <div class="box">
+                          <p class="description">{{ rev.story }}</p>
+                      </div>
+                      <div class="author"><img class="rounded-circle" src="{% static 'img/prr.jpg' %}">
+                          <h5 class="name">{{ rev.name }}</h5>
+                          <p class="title" style="color: black;">{{ rev.ename}}  &nbsp;&nbsp; <i class="fa fa-thumbs-up" style = "  color: rgb(0, 89, 255) ; "></i> {{ rev.rate }}</p>
+                      </div>
+                  </div>
+                {% endfor %}
+              </div>
+          </div>
+      </div>
+    </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+  </body>
+  
+  </html>
 </div>
+
+
         {% endblock %}

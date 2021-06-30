@@ -14,17 +14,19 @@ urlpatterns = [
   path('logout/',views.logoutUser,name="logout"),
   path('contactus/' , views.contactus, name="contactus"),
    path('aboutus/' , views.aboutus, name="aboutus"),
-  path('book/<int:id>', views.book, name="book"),
-  path('abook/<int:id>', views.abook, name="abook"),
-  path('mbook/<int:id>', views.mbook, name="mbook"),
+  path('book/<int:id>/<str:ename>', views.book, name="book"),
+  path('abook/<int:id>/<str:ename>', views.abook, name="abook"),
+  path('mbook/<int:id>/<str:ename>', views.mbook, name="mbook"),
    path('profile/<int:id>/<str:username>', views.profile, name="profile"),
     path('editprofile/<int:id>', views.update, name="editprofile"),
      path('delete/<int:id>', views.destroy, name = "delete"),
      path('review/<int:id>',views.reviewpage,name="review"),
       path('reviewpage/' , views.reviews, name="reviewpage"),
-         path('bill/<str:username>', views.bill, name="bill"),
+      path('thank/',views.thank , name= "thank"),
+         path('bill/<str:username>/<str:ename>', views.bill, name="bill"),
          path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-         views.activate,name='activate')
+         views.activate,name='activate'),
+      
 
 
 ]
